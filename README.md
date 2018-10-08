@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/masterandrey/ambientweather_livedata.png)](https://travis-ci.org/masterandrey/ambientweather_livedata)
 # Ambient Weather IPObserver sensor's data extractor
 
 Python3 library that search for sensor's temperature and humidity data on IPObserver page `LiveData`.
