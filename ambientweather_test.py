@@ -1,5 +1,5 @@
-from ambientweather_livedata import SensorData
-from _datetime import datetime
+from ambientweather import SensorData
+from datetime import datetime
 
 
 def test():
