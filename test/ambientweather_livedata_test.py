@@ -1,4 +1,4 @@
-from ambientweather_livedata import SensorData
+from ambientweather_livedata.ambientweather_livedata import SensorData
 from _datetime import datetime
 
 
