@@ -1,8 +1,12 @@
 [![Build Status](https://travis-ci.org/masterandrey/ambientweather_livedata.png)](https://travis-ci.org/masterandrey/ambientweather_livedata)
-# Ambient Weather IPObserver sensor's data extractor
+# Extract data from Ambient Weather stations
 
-Python3 library that search for sensor's temperature and humidity data on IPObserver page `LiveData`.
-Uses xpath and [lxml](http://lxml.de/).
+Python3 library that extracts information from [Ambient Weather stations](https://www.ambientweather.com/).
+
+It collects sensor's data (temperature and humidity) from the [IPObserver](https://www.ambientweather.com/amobserverip.html) `LiveData` tab of the IPObserver web-page.
+You can get this page from the IPObserver - just open the IPObserver IP adddress in your web-brawser to see it.
+
+The library uses xpath and [lxml](http://lxml.de/).
 
 Example:
 
