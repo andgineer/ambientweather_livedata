@@ -9,7 +9,7 @@ def test():
     sensor_data = SensorData()
     inSensor, outSensor = sensor_data.parse(page)
 
-    print('Time: {}\n'.format(inSensor.time))
+    print(f'Time: {inSensor.time}\n')
     print('''Indoor\n{delimiter}\nTemperature: {temp}\nHumidity: {humidity}
 Absolute preassure: {abs_press}\nRelative preassure: {rel_press}\nBattery status: {battery}\n'''.format(
         delimiter='='*20,
