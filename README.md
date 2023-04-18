@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/masterandrey/ambientweather_livedata.png)](https://travis-ci.org/masterandrey/ambientweather_livedata)
+[![Build Status](https://github.com/andgineer/ambientweather_livedata/workflows/ci/badge.svg)](https://github.com/andgineer/ambientweather_livedata/actions)
 # Extract data from Ambient Weather stations
 
 Python3 library that extracts information from [Ambient Weather stations](https://www.ambientweather.com/).
