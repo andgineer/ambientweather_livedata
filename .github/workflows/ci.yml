@@ -29,11 +29,32 @@ jobs:
         echo ${{ runner.os }} ${{ matrix.os }}
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-#    - name: pre-commit
-#      if: runner.os == 'Linux'  # we do not need static code analyzes on each OS, but we want to repeat it on Linux only for each Python version in matrix
-#      run: |
-#        pip install flake8 pylint pre-commit
-#        pre-commit run --all-files
     - name: Test
       run: |
-        python -m pytest --verbose
+        python -m pytest -vv --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=src tests/
+
+    - name: Upload coverage data to coveralls.io
+      if: ${{ matrix.python-version == 3.11 && matrix.platform == 'ubuntu-latest' }}
+      run: coveralls --service=github
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload Coverage to Codecov
+      if: ${{ matrix.python-version == 3.11 && matrix.platform == 'ubuntu-latest' }}
+      uses: codecov/codecov-action@v2
+
+    - name: Coverage comment
+      id: coverage_comment
+      if: ${{ matrix.python-version == 3.11 && matrix.platform == 'ubuntu-latest' }}
+      uses: py-cov-action/python-coverage-comment-action@v3
+      with:
+        GITHUB_TOKEN: ${{ github.token }}
+        MINIMUM_GREEN: 85
+        MINIMUM_ORANGE: 70
+
+    - name: Store Pull Request comment to be posted
+      uses: actions/upload-artifact@v3
+      if: steps.coverage_comment.outputs.COMMENT_FILE_WRITTEN == 'true'
+      with:
+        name: python-coverage-comment-action
+        path: python-coverage-comment-action.txt

@@ -1,35 +1,39 @@
+"""Extract data from Ambient Weather stations."""
+from typing import List, Tuple
+
+from datetime import datetime
 import requests
 from lxml import html
-from datetime import datetime
 
 
-TITLE = 'LiveData'  # HTML live data page title
+TITLE = "LiveData"  # HTML live data page title
+TIMEOUT = 5  # seconds
 
 
-class SensorData(object):
-    """
-    time
-    temp
-    humidity
-    abs_press
-    rel_press
-    battery ('Normal')
-    """
+class SensorData:
+    """Sensor data object"""
 
-    def parse(self, live_data_html):
-        """
-        Extract sensor's data from html (LiveData.html from your ObserverIP)
+    time: datetime
+    temp: float
+    humidity: float
+    abs_press: float
+    rel_press: float
+    battery: List[str]  # ('Normal')
+
+    def parse(self, live_data_html: bytes) -> Tuple["SensorData", "SensorData"]:
+        """Extract sensor's data from html (LiveData.html from your ObserverIP).
+
         Returns touple with (sensor1, sensor2 -> SensorData)
         """
 
         tree = html.fromstring(live_data_html)
-        title = tree.xpath('//title/text()')
+        title = tree.xpath("//title/text()")
         if title[0] != TITLE:
-            raise ValueError(f'Wrong html page. Good one have to have title {TITLE}')
+            raise ValueError(f"Wrong html page. Good one have to have title {TITLE}")
 
         in_sensor = SensorData()
         time_str = tree.xpath('//input[@name="CurrTime"]/@value')[0]
-        in_sensor.time = datetime.strptime(time_str, '%H:%M %m/%d/%Y')
+        in_sensor.time = datetime.strptime(time_str, "%H:%M %m/%d/%Y")
         in_sensor.temp = float(tree.xpath('//input[@name="inTemp"]/@value')[0])
         in_sensor.humidity = float(tree.xpath('//input[@name="inHumi"]/@value')[0])
         in_sensor.abs_press = float(tree.xpath('//input[@name="AbsPress"]/@value')[0])
@@ -46,12 +50,12 @@ class SensorData(object):
 
         return in_sensor, out_sensor
 
-    def get(self, url):
+    def get(self, url: str) -> Tuple["SensorData", "SensorData"]:
         """
         Load ObserverIP live data page from the URL and parse it
 
         Returns touple with (sensor1, sensor2 -> SensorData)
         """
 
-        page = requests.get(url).content
+        page = requests.get(url, timeout=TIMEOUT).content
         return self.parse(page)

@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/andgineer/ambientweather_livedata/workflows/ci/badge.svg)](https://github.com/andgineer/ambientweather_livedata/actions)
+[![Coverage](https://raw.githubusercontent.com/andgineer/ambientweather_livedata/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/ambientweather_livedata/blob/python-coverage-comment-action-data/htmlcov/index.html)
 # Extract data from Ambient Weather stations
 
 Python3 library that extracts information from [Ambient Weather stations](https://www.ambientweather.com/).
@@ -31,4 +32,7 @@ Example:
             battery=inSensor.battery
         ))
 
+## Coverage report
+* [Codecov](https://app.codecov.io/gh/andgineer/ambientweather_livedata/tree/master/src)
+* [Coveralls](https://coveralls.io/github/andgineer/ambientweather_livedata)
 
