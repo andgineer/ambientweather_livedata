@@ -4,8 +4,9 @@
 
 | Name                  |    Stmts |     Miss |   Cover |   Missing |
 |---------------------- | -------: | -------: | ------: | --------: |
-| src/ambientweather.py |       37 |        3 |     92% | 32, 60-61 |
-|             **TOTAL** |   **37** |    **3** | **92%** |           |
+| src/ambientweather.py |       43 |        3 |     93% | 42, 67-68 |
+| src/example.py        |       17 |        1 |     94% |        26 |
+|             **TOTAL** |   **60** |    **4** | **93%** |           |
 
 
 ## Setup coverage badge
