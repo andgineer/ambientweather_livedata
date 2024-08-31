@@ -1,33 +1,35 @@
 """Extract data from Ambient Weather stations."""
-from typing import Tuple
+
+from typing import Tuple, Optional
 from datetime import datetime
 import requests
-from lxml import html
+from lxml import html  # pylint: disable=import-error
 
 TITLE = "LiveData"  # HTML live data page title
 TIMEOUT = 5  # seconds
 
 
-class BaseSensorData:
+class BaseSensorData:  # pylint: disable=too-few-public-methods
     """Base class for sensor data"""
-    def __init__(self):
-        self.time: datetime = None
-        self.temp: float = None
-        self.humidity: float = None
-        self.battery: str = None
+
+    def __init__(self) -> None:
+        self.time: Optional[datetime] = None
+        self.temp: Optional[float] = None
+        self.humidity: Optional[float] = None
+        self.battery: Optional[str] = None
 
 
-class IndoorSensorData(BaseSensorData):
+class IndoorSensorData(BaseSensorData):  # pylint: disable=too-few-public-methods
     """Indoor sensor data"""
-    def __init__(self):
+
+    def __init__(self) -> None:
         super().__init__()
-        self.abs_press: float = None
-        self.rel_press: float = None
+        self.abs_press: Optional[float] = None
+        self.rel_press: Optional[float] = None
 
 
-class OutdoorSensorData(BaseSensorData):
+class OutdoorSensorData(BaseSensorData):  # pylint: disable=too-few-public-methods
     """Outdoor sensor data"""
-    pass
 
 
 class AmbientWeather:

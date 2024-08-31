@@ -1,13 +1,14 @@
 """Example script to demonstrate the usage of the AmbientWeather class."""
+
 from ambientweather import AmbientWeather
 
 
 def show_weather() -> None:
     """Retrieve and display weather data from an Ambient Weather station."""
-    in_sensor, out_sensor = AmbientWeather.get('http://10.0.0.176/LiveData.html')
-    delimiter = '=' * 20
+    in_sensor, out_sensor = AmbientWeather.get("http://10.0.0.176/LiveData.html")
+    delimiter = "=" * 20
 
-    print(f'Time: {in_sensor.time}\n')
+    print(f"Time: {in_sensor.time}\n")
 
     print(f"Indoor\n{delimiter}")
     print(f"Temperature: {in_sensor.temp}")
@@ -22,5 +23,5 @@ def show_weather() -> None:
     print(f"Battery status: {out_sensor.battery}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     show_weather()

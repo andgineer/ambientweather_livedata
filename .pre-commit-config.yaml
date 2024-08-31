@@ -1,15 +1,12 @@
 exclude: |
     (?x)(
         tests/|
-        docs/|
-        core/|
-        venv/|
-        __about__.py
+        venv/
     )
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.1.11
+    rev: v0.6.2
     hooks:
       # Run the linter.
       - id: ruff
