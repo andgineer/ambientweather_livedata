@@ -43,18 +43,18 @@ jobs:
         python -m pytest -vv --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=src tests/
 
     - name: Upload coverage data to coveralls.io
-      if: ${{ matrix.python-version == 3.11 && matrix.platform == 'ubuntu-latest' }}
+      if: ${{ matrix.python-version == 3.12 && matrix.platform == 'ubuntu-latest' }}
       run: coveralls --service=github
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload Coverage to Codecov
-      if: ${{ matrix.python-version == 3.11 && matrix.platform == 'ubuntu-latest' }}
+      if: ${{ matrix.python-version == 3.12 && matrix.platform == 'ubuntu-latest' }}
       uses: codecov/codecov-action@v2
 
     - name: Coverage comment
       id: coverage_comment
-      if: ${{ matrix.python-version == 3.11 && matrix.platform == 'ubuntu-latest' }}
+      if: ${{ matrix.python-version == 3.12 && matrix.platform == 'ubuntu-latest' }}
       uses: py-cov-action/python-coverage-comment-action@v3
       with:
         GITHUB_TOKEN: ${{ github.token }}
