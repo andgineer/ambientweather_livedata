@@ -17,4 +17,3 @@ The library uses xpath and [lxml](http://lxml.de/).
 ## Coverage report
 * [Codecov](https://app.codecov.io/gh/andgineer/ambientweather_livedata/tree/master/src)
 * [Coveralls](https://coveralls.io/github/andgineer/ambientweather_livedata)
-

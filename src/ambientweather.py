@@ -1,7 +1,8 @@
 """Extract data from Ambient Weather stations."""
 
-from typing import Tuple, Optional
 from datetime import datetime
+from typing import Optional
+
 import requests
 from lxml import html  # pylint: disable=import-error
 
@@ -36,7 +37,7 @@ class AmbientWeather:
     """Class to handle Ambient Weather data retrieval and parsing"""
 
     @staticmethod
-    def parse(live_data_html: bytes) -> Tuple[IndoorSensorData, OutdoorSensorData]:
+    def parse(live_data_html: bytes) -> tuple[IndoorSensorData, OutdoorSensorData]:
         """Extract sensor data from html (LiveData.html from your ObserverIP)."""
         tree = html.fromstring(live_data_html)
         title = tree.xpath("//title/text()")
@@ -62,7 +63,7 @@ class AmbientWeather:
         return in_sensor, out_sensor
 
     @staticmethod
-    def get(url: str) -> Tuple[IndoorSensorData, OutdoorSensorData]:
+    def get(url: str) -> tuple[IndoorSensorData, OutdoorSensorData]:
         """
         Load ObserverIP live data page from the URL and parse it
         """
