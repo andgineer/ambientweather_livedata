@@ -4,7 +4,7 @@
 
 | Name                  |    Stmts |     Miss |   Cover |   Missing |
 |---------------------- | -------: | -------: | ------: | --------: |
-| src/ambientweather.py |       42 |        3 |     93% | 44, 69-70 |
+| src/ambientweather.py |       42 |        3 |     93% | 45, 70-71 |
 | src/example.py        |       17 |        1 |     94% |        27 |
 |             **TOTAL** |   **59** |    **4** | **93%** |           |
 
