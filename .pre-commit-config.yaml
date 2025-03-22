@@ -48,9 +48,8 @@ repos:
         name: ruff-format-tests
         files: ^tests/
         args: [
-          --fix,
-          --line-length=99,
-          --exit-zero    # Don't fail on issues
+          --fix-only,
+          --line-length=99
         ]
       - id: ruff-format
         args: [
@@ -68,5 +67,6 @@ repos:
           "--namespace-packages",
           "--explicit-package-bases"
         ]
-        language: system
-        types: [ python ]
+        files: \.py$
+        exclude: ^tests/
+        language: python
