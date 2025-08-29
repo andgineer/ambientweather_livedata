@@ -1,5 +1,6 @@
 """Extract data from Ambient Weather stations."""
 
+from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
@@ -11,26 +12,26 @@ TITLE: str = "LiveData"  # HTML live data page title
 TIMEOUT: int = 5  # seconds
 
 
-class BaseSensorData:  # pylint: disable=too-few-public-methods
+@dataclass
+class BaseSensorData:
     """Base class for sensor data"""
 
-    def __init__(self) -> None:
-        self.time: Optional[datetime] = None
-        self.temp: Optional[float] = None
-        self.humidity: Optional[float] = None
-        self.battery: Optional[str] = None
+    time: Optional[datetime] = None
+    temp: Optional[float] = None
+    humidity: Optional[float] = None
+    battery: Optional[str] = None
 
 
-class IndoorSensorData(BaseSensorData):  # pylint: disable=too-few-public-methods
+@dataclass
+class IndoorSensorData(BaseSensorData):
     """Indoor sensor data"""
 
-    def __init__(self) -> None:
-        super().__init__()
-        self.abs_press: Optional[float] = None
-        self.rel_press: Optional[float] = None
+    abs_press: Optional[float] = None
+    rel_press: Optional[float] = None
 
 
-class OutdoorSensorData(BaseSensorData):  # pylint: disable=too-few-public-methods
+@dataclass
+class OutdoorSensorData(BaseSensorData):
     """Outdoor sensor data"""
 
 
