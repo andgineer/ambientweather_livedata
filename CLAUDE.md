@@ -24,7 +24,7 @@ python -m pytest tests/test_ambientweather.py -v  # Run specific test file
 ```bash
 ruff check .          # Lint entire project
 ruff format .         # Format code
-mypy src/             # Type checking
+pre-commit run mypy --all-files  # Type checking (installs stubs automatically)
 pre-commit run --all-files  # Run all pre-commit hooks
 ```
 

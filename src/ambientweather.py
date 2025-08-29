@@ -5,9 +5,10 @@ from typing import Optional
 
 import requests
 from lxml import html  # pylint: disable=import-error
+from lxml.html import HtmlElement
 
-TITLE = "LiveData"  # HTML live data page title
-TIMEOUT = 5  # seconds
+TITLE: str = "LiveData"  # HTML live data page title
+TIMEOUT: int = 5  # seconds
 
 
 class BaseSensorData:  # pylint: disable=too-few-public-methods
@@ -39,15 +40,15 @@ class AmbientWeather:
     @staticmethod
     def parse(live_data_html: bytes) -> tuple[IndoorSensorData, OutdoorSensorData]:
         """Extract sensor data from html (LiveData.html from your ObserverIP)."""
-        tree = html.fromstring(live_data_html)
-        title = tree.xpath("//title/text()")
+        tree: HtmlElement = html.fromstring(live_data_html)
+        title: list[str] = tree.xpath("//title/text()")
         if title[0] != TITLE:
             raise ValueError(f"Wrong html page. Good one have to have title {TITLE}")
 
-        in_sensor = IndoorSensorData()
-        out_sensor = OutdoorSensorData()
+        in_sensor: IndoorSensorData = IndoorSensorData()
+        out_sensor: OutdoorSensorData = OutdoorSensorData()
 
-        time_str = tree.xpath('//input[@name="CurrTime"]/@value')[0]
+        time_str: str = tree.xpath('//input[@name="CurrTime"]/@value')[0]
         in_sensor.time = out_sensor.time = datetime.strptime(time_str, "%H:%M %m/%d/%Y")
 
         in_sensor.temp = float(tree.xpath('//input[@name="inTemp"]/@value')[0])
@@ -67,5 +68,6 @@ class AmbientWeather:
         """
         Load ObserverIP live data page from the URL and parse it
         """
-        page = requests.get(url, timeout=TIMEOUT).content
+        response: requests.Response = requests.get(url, timeout=TIMEOUT)
+        page: bytes = response.content
         return AmbientWeather.parse(page)
