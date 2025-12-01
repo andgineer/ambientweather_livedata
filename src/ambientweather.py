@@ -2,7 +2,6 @@
 
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
 
 import requests
 from lxml import html  # pylint: disable=import-error
@@ -16,18 +15,18 @@ TIMEOUT: int = 5  # seconds
 class BaseSensorData:
     """Base class for sensor data"""
 
-    time: Optional[datetime] = None
-    temp: Optional[float] = None
-    humidity: Optional[float] = None
-    battery: Optional[str] = None
+    time: datetime | None = None
+    temp: float | None = None
+    humidity: float | None = None
+    battery: str | None = None
 
 
 @dataclass
 class IndoorSensorData(BaseSensorData):
     """Indoor sensor data"""
 
-    abs_press: Optional[float] = None
-    rel_press: Optional[float] = None
+    abs_press: float | None = None
+    rel_press: float | None = None
 
 
 @dataclass

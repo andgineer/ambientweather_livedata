@@ -10,27 +10,28 @@ This is a Python library that extracts sensor data from Ambient Weather IPObserv
 
 ### Environment Setup
 ```bash
-source activate.sh  # Creates/activates Python 3.12 venv and installs dependencies
+source ./activate.sh  # Creates/activates Python 3.12 venv and installs dependencies
 ```
+
+**IMPORTANT**: Always activate the virtual environment before running any commands. Use `source ./activate.sh` before each command.
 
 ### Testing
 ```bash
-make test                                    # Run all tests
-python -m pytest -s -v --doctest-modules   # Verbose test output with coverage
-python -m pytest tests/test_ambientweather.py -v  # Run specific test file
+source ./activate.sh && make test                                    # Run all tests
+source ./activate.sh && python -m pytest -s -v --doctest-modules   # Verbose test output with coverage
+source ./activate.sh && python -m pytest tests/test_ambientweather.py -v  # Run specific test file
 ```
 
 ### Code Quality
 ```bash
-ruff check .          # Lint entire project
-ruff format .         # Format code
-pre-commit run mypy --all-files  # Type checking (installs stubs automatically)
-pre-commit run --all-files  # Run all pre-commit hooks
+source ./activate.sh && pre-commit run --all-files  # Run all pre-commit hooks
 ```
+
+**IMPORTANT**: Always use `pre-commit run --all-files` for code quality checks. Never run ruff or mypy directly.
 
 ### Manual Testing
 ```bash
-cd src && python example.py  # Run usage example (requires live IPObserver device)
+source ./activate.sh && cd src && python example.py  # Run usage example (requires live IPObserver device)
 ```
 
 ## Architecture
